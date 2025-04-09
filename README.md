@@ -25,28 +25,10 @@ A modern Android SDK for integrating Tolgee translation services into your Andro
 The SDK has two types of dependencies:
 
 ### Required Dependencies
-These dependencies are required for the SDK to work. You need to add them to your project's `build.gradle.kts`:
 
-```kotlin
-dependencies {
-    // Core Android
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
-    
-    // Compose (required for UI components)
-    implementation(platform("androidx.compose:compose-bom:2024.02.00"))
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.ui:ui-text")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose")
-    implementation("androidx.activity:activity-compose")
-    implementation("androidx.navigation:navigation-compose")
-}
-```
 
 ### Internal Dependencies
-These dependencies are used internally by the SDK and don't need to be included in your project:
+These dependencies are used internally by the SDK:
 
 ```kotlin
 dependencies {
@@ -249,20 +231,45 @@ fun MyScreen() {
 
 #### Navigation Integration
 
-The SDK provides navigation integration:
+The SDK provides navigation integration, which is necessary to add context to translations. This allows the Tolgee platform to understand the navigation context of your app, enhancing the translation management process:
 
 ```kotlin
 val navController = rememberNavController()
 navController.registerAsRouteProviderForTolgee()
 ```
 
-#### Offline Support
+### Usage
 
-The SDK automatically caches translations for offline use. You can force a refresh:
+#### Debug Mode
+
+In debug mode, the Tolgee SDK adds a floating button to your app. When you tap this button, it displays all translations currently visible on the screen. If you long-press on a translation, a dialog will open, allowing you to edit the translation key directly. This feature is particularly useful for developers and translators to quickly access and modify translations during development.
+
+## Using Tolgee SDK
+
+To use the Tolgee SDK, you need to have a Tolgee API key. You can create an API key by signing up for an account on Tolgee. Follow the guide on how to create an API key [here](https://docs.tolgee.io/platform/account_settings/api_keys_and_pat_tokens).
+
+### Adding Translations
+
+In your Tolgee project, you can add translation keys to manage the text displayed in your application. You can add new translation keys by following the guide [here](https://docs.tolgee.io/platform/translation_keys/keys). Once you have added a translation key, you can use the key name in your components.
+
+### Example Usage
+
+Here's an example of how you can use a translation key in a Jetpack Compose component:
 
 ```kotlin
-TolgeeSdk.refreshTranslations()
+Text(
+    text = t("app_subscriptions"),
+    modifier = modifier
+)
 ```
+Alternatively, you can use:
+```kotlin
+Translate(
+    keyName = "app_subscriptions"
+)
+```
+
+In this example, `t("app_subscriptions")` is used to fetch the translation for the key `app_subscriptions`. Make sure that this key is added to your Tolgee project with the appropriate translations.
 
 ## Contributing
 
