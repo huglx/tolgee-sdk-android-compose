@@ -1,0 +1,164 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "2c3bcc533d2377e10bc9d1b8905f5dc1",
+    "entities": [
+      {
+        "tableName": "tolgee_keys",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`keyId` INTEGER NOT NULL, `keyName` TEXT NOT NULL, PRIMARY KEY(`keyId`))",
+        "fields": [
+          {
+            "fieldPath": "keyId",
+            "columnName": "keyId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyName",
+            "columnName": "keyName",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "keyId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "tolgee_translations",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `keyId` INTEGER NOT NULL, `languageId` INTEGER NOT NULL, `text` TEXT, `id` INTEGER NOT NULL, `name` TEXT NOT NULL, `originalName` TEXT NOT NULL, `tag` TEXT NOT NULL, `flagEmoji` TEXT NOT NULL, `isBase` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyId",
+            "columnName": "keyId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "languageId",
+            "columnName": "languageId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "language.id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "language.name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "language.originalName",
+            "columnName": "originalName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "language.tag",
+            "columnName": "tag",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "language.flagEmoji",
+            "columnName": "flagEmoji",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "language.isBase",
+            "columnName": "isBase",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "tolgee_languages",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `originalName` TEXT NOT NULL, `tag` TEXT NOT NULL, `flagEmoji` TEXT NOT NULL, `isBase` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originalName",
+            "columnName": "originalName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tag",
+            "columnName": "tag",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "flagEmoji",
+            "columnName": "flagEmoji",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isBase",
+            "columnName": "isBase",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2c3bcc533d2377e10bc9d1b8905f5dc1')"
+    ]
+  }
+}
