@@ -24,7 +24,7 @@ object TolgeeSdkInitializer {
             instance = TolgeeSdkFactory.create(config)
         }
     }
-    
+
     /**
      * Initialize TolgeeSdk with configuration block
      * @param application Application context

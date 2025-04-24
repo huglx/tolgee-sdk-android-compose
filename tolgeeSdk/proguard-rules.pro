@@ -87,3 +87,23 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Keep internal UI components 
+-keep class com.github.huglx.tolgeesdk.internal.ui.** { *; }
+
+# Keep public API
+-keep class com.github.huglx.tolgeesdk.TolgeeSdk { *; }
+-keep class com.github.huglx.tolgeesdk.sdk.core.TolgeeSdkInitializer { *; }
+-keep class com.github.huglx.tolgeesdk.feature.translation.presentation.** { *; }
+
+# Preserve Compose compiler annotations
+-keep class androidx.compose.runtime.** { *; }
+-keep class androidx.compose.ui.** { *; }
+
+# Keep Compose-related classes that might be used in reflection
+-keepclassmembers class androidx.compose.** { *; }
+-keep class androidx.compose.material3.TextKt { *; }
+
+# Improve R8 optimizations
+-repackageclasses 'com.github.huglx.tolgeesdk.internal'
+-allowaccessmodification
