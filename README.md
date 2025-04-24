@@ -134,7 +134,7 @@ Add the following dependency in your app's `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.github.huglx:tolgeesdk:1.0.0")
+    implementation("com.github.huglx:tolgeesdk:0.0.3")
 }
 ```
 
